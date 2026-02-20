@@ -1,352 +1,378 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lakdawala Clinic - Dr. Mustufa K Lakdawala. Premium Homeopathic Care in Rajkot with over 26 years of experience.">
-    <title>Lakdawala Clinic | Premium Homeopathy in Rajkot</title>
+    <title>Lakdawala Clinic | Exclusive Homeopathic Care</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* --- CORE DESIGN SYSTEM --- */
+        /* --- DYNAMIC THEME SYSTEM --- */
         :root {
-            --brand-dark: #0f2922;      /* Deep Forest */
-            --brand-primary: #1b4332;   /* Royal Green */
-            --brand-gold: #d4af37;      /* True Gold */
-            --text-main: #2b2b2b;
-            --text-light: #737373;
-            --bg-body: #fdfdfc;
-            --bg-alt: #f4f6f5;
-            --white: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --bg-color: #f8f9fa;
+            --text-color: #121212;
+            --accent-gold: #B59551;
+            --accent-gold-hover: #9c7f42;
+            --nav-bg: rgba(248, 249, 250, 0.85);
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.1);
+            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        [data-theme="dark"] {
+            --bg-color: #0a0a0a;
+            --text-color: #f8f9fa;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #f1c40f;
+            --nav-bg: rgba(10, 10, 10, 0.85);
+            --card-bg: #141414;
+            --border-color: rgba(255,255,255,0.1);
+        }
+
+        /* --- GLOBAL RESETS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-body);
-            line-height: 1.8;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; color: var(--brand-dark); }
-        
+        h1, h2, h3, h4, h5, .serif { font-family: 'Cinzel', serif; font-weight: 500; }
         a { text-decoration: none; color: inherit; }
-        
-        /* --- SMOOTH REVEAL ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot {
+            width: 8px; height: 8px; background-color: var(--accent-gold);
+            border-radius: 50%; position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid var(--accent-gold);
+            border-radius: 50%; position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 9998;
+            transition: transform 0.15s ease-out;
+        }
+        .cursor-hover .cursor-dot { width: 50px; height: 50px; background-color: rgba(212, 175, 55, 0.2); mix-blend-mode: difference; }
+        .cursor-hover .cursor-outline { opacity: 0; }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #0a0a0a; z-index: 10000; display: flex;
+            justify-content: center; align-items: center; color: var(--accent-gold);
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        .loader-text { font-family: 'Cinzel', serif; font-size: 2rem; letter-spacing: 5px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         /* --- NAVIGATION --- */
         header {
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            padding: 15px 5%; transition: var(--transition);
+            position: fixed; width: 100%; top: 0; padding: 20px 5%;
+            background: var(--nav-bg); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
         }
-        
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        
-        .logo-box { display: flex; flex-direction: column; }
-        .logo-box h1 { font-size: 1.8rem; font-weight: 700; line-height: 1; }
-        .logo-box span { font-size: 0.7rem; color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 600; margin-top: 4px; }
-        
-        nav ul { display: flex; gap: 3rem; list-style: none; align-items: center; }
-        nav a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
-        nav a:hover { color: var(--brand-gold); }
-        
-        .btn-call {
-            background: var(--brand-primary); color: var(--white); padding: 12px 28px;
-            border-radius: 2px; font-weight: 600; letter-spacing: 1px;
+        .brand { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: -5px; left: 0; background-color: var(--accent-gold);
+            transition: width 0.3s ease;
         }
-        .btn-call:hover { background: var(--brand-dark); color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        /* Theme Toggle Button */
+        .theme-toggle { background: none; border: none; color: var(--text-color); font-size: 1.2rem; outline: none; transition: var(--transition-fast); }
+        .theme-toggle:hover { color: var(--accent-gold); transform: rotate(15deg); }
 
-        /* --- HERO PARALLAX --- */
+        /* --- HERO SECTION --- */
         #hero {
-            height: 100vh;
-            background-image: linear-gradient(rgba(15, 41, 34, 0.85), rgba(15, 41, 34, 0.95)), url('https://images.unsplash.com/photo-1551076805-e1869043e560?auto=format&fit=crop&q=80');
-            background-attachment: fixed; background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 5%;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding: 0 5%;
+            background: radial-gradient(circle at center, var(--card-bg) 0%, var(--bg-color) 100%);
         }
-
-        .hero-content { max-width: 900px; margin-top: 4rem; }
-        .hero-subtitle { color: var(--brand-gold); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 20px; }
-        .hero-content h2 { color: var(--white); font-size: 4.5rem; font-weight: 400; line-height: 1.1; margin-bottom: 30px; }
-        .hero-content p { font-size: 1.2rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+        .hero-content { z-index: 2; max-width: 1000px; margin-top: 5rem; }
+        .hero-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-gold); margin-bottom: 20px; display: block; }
+        .hero-title { font-size: 5vw; line-height: 1.1; margin-bottom: 30px; }
+        .hero-desc { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.8; }
         
-        .btn-gold {
-            background: var(--brand-gold); color: var(--white); padding: 18px 45px;
-            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
-            border-radius: 2px; transition: var(--transition); display: inline-block;
+        .btn-luxury {
+            display: inline-block; padding: 18px 45px; background: transparent;
+            color: var(--text-color); border: 1px solid var(--border-color);
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
+            position: relative; overflow: hidden; transition: var(--transition-fast);
         }
-        .btn-gold:hover { background: #b8962e; transform: translateY(-3px); }
+        .btn-luxury::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent-gold); z-index: -1; transform: scaleX(0);
+            transform-origin: right; transition: transform 0.5s ease;
+        }
+        .btn-luxury:hover { color: #fff; border-color: var(--accent-gold); }
+        .btn-luxury:hover::before { transform: scaleX(1); transform-origin: left; }
 
-        /* --- GLOBAL SECTION STYLES --- */
-        section { padding: 120px 5%; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header span { color: var(--brand-gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
-        .section-header h3 { font-size: 3rem; margin-top: 10px; }
-
-        /* --- THE DOCTOR (ABOUT) --- */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        /* --- ABOUT EDITORIAL --- */
+        .section-padding { padding: 150px 5%; }
+        .editorial-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; max-width: 1400px; margin: 0 auto; align-items: center; }
         
-        .image-frame { position: relative; padding: 20px; }
-        .image-frame::before { content: ''; position: absolute; top: 0; left: 0; right: 20px; bottom: 20px; border: 2px solid var(--brand-gold); z-index: -1; }
-        .image-frame img { width: 100%; height: auto; display: block; box-shadow: 0 20px 40px rgba(0,0,0,0.1); object-fit: cover; aspect-ratio: 4/5; }
+        .img-reveal-wrapper { position: relative; overflow: hidden; border-radius: 2px; }
+        .img-reveal-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); z-index: 1; transition: height 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .img-reveal-wrapper.active .img-reveal-overlay { height: 0; }
+        .editorial-img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: transform 2s ease; }
+        .img-reveal-wrapper:hover .editorial-img { transform: scale(1.05); filter: grayscale(0%); }
 
-        .about-text h4 { font-size: 2.5rem; margin-bottom: 20px; }
-        .about-text p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 20px; text-align: justify; }
-        
-        .stats-banner { display: flex; gap: 40px; margin-top: 40px; padding-top: 30px; border-top: 1px solid #e0e0e0; }
-        .stat h5 { font-size: 3rem; color: var(--brand-primary); line-height: 1; }
-        .stat p { font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-top: 5px; color: var(--text-main); }
+        .editorial-text h2 { font-size: 3.5rem; margin-bottom: 30px; line-height: 1.2; }
+        .editorial-text p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.8; font-weight: 300; }
+        .signature { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--accent-gold); margin-top: 40px; }
 
-        /* --- SPECIALTIES GRID --- */
-        .bg-gray { background-color: var(--bg-alt); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        /* --- SERVICES (GLASSMORPHISM CARDS) --- */
+        .services-container { max-width: 1400px; margin: 0 auto; }
+        .section-heading { text-align: center; margin-bottom: 80px; }
+        .section-heading h2 { font-size: 3rem; }
         
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .service-card {
-            background: var(--white); padding: 50px 40px; border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: var(--transition);
-            border-top: 4px solid transparent;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 50px 40px; transition: var(--transition-slow);
+            position: relative; overflow: hidden;
         }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-top: 4px solid var(--brand-gold); }
-        .service-card i { font-size: 3rem; color: var(--brand-primary); margin-bottom: 25px; }
-        .service-card h4 { font-size: 1.5rem; margin-bottom: 15px; }
-        .service-card p { font-size: 0.95rem; color: var(--text-light); }
-
-        /* --- THE PROCESS TIMELINE --- */
-        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
-        .process-step { position: relative; }
-        .step-number { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(212, 175, 55, 0.2); line-height: 1; margin-bottom: -30px; font-weight: 700; }
-        .process-step h4 { font-size: 1.5rem; margin-bottom: 15px; position: relative; z-index: 1; }
-        .process-step p { color: var(--text-light); font-size: 0.95rem; }
-
-        /* --- CONTACT & LOCATION --- */
-        .contact-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; background: var(--white); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        .contact-details { padding: 60px; background: var(--brand-dark); color: var(--white); }
-        
-        .contact-item { margin-bottom: 35px; display: flex; gap: 20px; }
-        .contact-item i { font-size: 1.5rem; color: var(--brand-gold); margin-top: 5px; }
-        .contact-item h5 { color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .contact-item p { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
-        
-        .map-box { width: 100%; height: 100%; min-height: 400px; background: #eee; }
-
-        /* --- FLOATING WHATSAPP --- */
-        .float-wa {
-            position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white;
-            width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 35px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 9999;
-            transition: var(--transition);
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0;
+            background: var(--accent-gold); transition: height 0.5s ease;
         }
-        .float-wa:hover { transform: scale(1.1) rotate(10deg); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .service-card:hover::before { height: 100%; }
+        .service-card i { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 30px; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
 
-        /* --- FOOTER --- */
-        footer { background: #081612; color: rgba(255,255,255,0.6); padding: 50px 5%; text-align: center; font-size: 0.9rem; }
-        footer h2 { color: var(--white); font-size: 1.5rem; margin-bottom: 10px; }
+        /* --- BOOKING MODAL (POPUP) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            z-index: 2000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: var(--transition-fast);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--bg-color); padding: 60px; max-width: 600px; width: 90%;
+            position: relative; transform: translateY(50px); transition: var(--transition-slow);
+            border: 1px solid var(--accent-gold); text-align: center;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-modal {
+            position: absolute; top: 20px; right: 25px; font-size: 1.5rem;
+            color: var(--text-color); background: none; border: none; padding: 10px;
+        }
+        .contact-box { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .whatsapp-btn-large {
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            background: #25d366; color: white; padding: 20px; font-size: 1.2rem;
+            font-weight: 600; margin-top: 20px; transition: var(--transition-fast);
+        }
+        .whatsapp-btn-large:hover { background: #1ebc59; letter-spacing: 2px; }
 
-        @media (max-width: 900px) {
-            .about-grid, .contact-wrap { grid-template-columns: 1fr; }
-            .process-grid { grid-template-columns: 1fr; gap: 60px; }
-            nav ul { display: none; } /* Add hamburger menu logic for mobile later if needed */
-            .hero-content h2 { font-size: 3rem; }
+        /* --- SCROLL ANIMATIONS --- */
+        .fade-up { opacity: 0; transform: translateY(50px); transition: var(--transition-slow); }
+        .fade-up.active { opacity: 1; transform: translateY(0); }
+
+        /* Footer */
+        footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border-color); font-size: 0.9rem; opacity: 0.7; }
+
+        @media (max-width: 1024px) {
+            .editorial-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
+            .nav-links { display: none; } /* Mobile menu logic goes here */
         }
     </style>
 </head>
 <body>
 
-    <header id="navbar">
-        <div class="nav-container">
-            <div class="logo-box">
-                <h1>Lakdawala Clinic</h1>
-                <span>Dr. Mustufa K Lakdawala</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">Profile</a></li>
-                    <li><a href="#specialties">Treatments</a></li>
-                    <li><a href="#process">Methodology</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="tel:+919909068168" class="btn-call"><i class="fas fa-phone"></i> 99090 68168</a></li>
-                </ul>
-            </nav>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <div id="preloader">
+        <div class="loader-text">LAKDAWALA CLINIC</div>
+    </div>
+
+    <header>
+        <div class="brand">LAKDAWALA</div>
+        <div class="nav-links">
+            <a href="#hero" class="hover-target">Home</a>
+            <a href="#about" class="hover-target">The Doctor</a>
+            <a href="#services" class="hover-target">Specialties</a>
+            <button class="theme-toggle hover-target" id="theme-btn" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#" class="btn-luxury hover-target" id="open-modal" style="padding: 10px 25px; font-size: 0.75rem;">Book Visit</a>
         </div>
     </header>
 
     <section id="hero">
-        <div class="hero-content reveal">
-            <span class="hero-subtitle">Rajkot's Premier Homeopathic Center</span>
-            <h2>Definitive healing starts from within.</h2>
-            <p>Experience world-class, side-effect-free homeopathic care. We don't just treat the symptoms; we eradicate the root cause of acute and chronic diseases.</p>
-            <a href="#contact" class="btn-gold">Schedule Your Visit</a>
+        <div class="hero-content fade-up">
+            <span class="hero-tag">A Legacy of Healing</span>
+            <h1 class="hero-title">Mastering the Art of Classical Homeopathy.</h1>
+            <p class="hero-desc">Over 26 years of restoring absolute health in Rajkot through definitive, root-cause medicinal protocols.</p>
+            <a href="#about" class="btn-luxury hover-target">Discover the Practice</a>
         </div>
     </section>
 
-    <section id="about" class="container">
-        <div class="about-grid">
-            <div class="image-frame reveal">
-                <img src="dad-photo.jpg" alt="Dr. Mustufa K Lakdawala">
+    <section id="about" class="section-padding">
+        <div class="editorial-grid">
+            <div class="img-reveal-wrapper">
+                <div class="img-reveal-overlay"></div>
+                <img src="dad-photo.jpg" alt="Dr. Mustufa K Lakdawala" class="editorial-img hover-target">
             </div>
-            <div class="about-text reveal delay-1">
-                <div class="section-header" style="text-align: left; margin-bottom: 30px;">
-                    <span>Clinical Director</span>
-                    <h4>Dr. Mustufa K Lakdawala</h4>
-                </div>
-                <p>With an illustrious career spanning over two and a half decades, Dr. Lakdawala is recognized as a leading authority in classical homeopathy in Rajkot. His diagnostic precision and profound understanding of human pathology allow him to tackle complex chronic cases that have resisted conventional treatments.</p>
-                <p>His philosophy is entirely patient-centric. By meticulously analyzing your unique genetic, physical, and psychological constitution, he formulates highly individualized medicinal protocols that restore your body's innate healing mechanisms naturally and permanently.</p>
-                
-                <div class="stats-banner">
-                    <div class="stat">
-                        <h5>26+</h5>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h5>Chronic</h5>
-                        <p>Disease Specialist</p>
-                    </div>
-                </div>
+            <div class="editorial-text fade-up">
+                <span class="hero-tag">Clinical Director</span>
+                <h2>Dr. Mustufa K Lakdawala</h2>
+                <p>True healing is not the suppression of symptoms; it is the total eradication of the disease from its deepest origin. For over two and a half decades, Dr. Lakdawala has practiced medicine with this singular philosophy.</p>
+                <p>By mapping your complete genetic, physiological, and emotional architecture, he formulates an exact, side-effect-free homeopathic protocol designed specifically for your constitution.</p>
+                <div class="signature">M.K. Lakdawala</div>
             </div>
         </div>
     </section>
 
-    <section id="specialties" class="bg-gray">
-        <div class="container">
-            <div class="section-header reveal">
-                <span>Areas of Excellence</span>
-                <h3>Specialized Treatments</h3>
+    <section id="services" class="section-padding" style="background: var(--bg-color);">
+        <div class="services-container">
+            <div class="section-heading fade-up">
+                <span class="hero-tag">Medical Competencies</span>
+                <h2>Areas of Expertise</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal">
-                    <i class="fas fa-dna"></i>
-                    <h4>Chronic Disease Reversal</h4>
-                    <p>Advanced constitutional remedies for long-standing conditions such as arthritis, asthma, diabetes, and thyroid imbalances, aiming for permanent remission.</p>
+                <div class="service-card fade-up">
+                    <i class="fas fa-infinity"></i>
+                    <h3>Chronic Pathology</h3>
+                    <p>Advanced constitutional interventions for diseases considered incurable or requiring lifelong conventional medication.</p>
                 </div>
-                <div class="service-card reveal delay-1">
-                    <i class="fas fa-shield-halved"></i>
-                    <h4>Immunology & Allergies</h4>
-                    <p>Strengthening the immune system to naturally defend against recurrent respiratory infections, severe allergies, and seasonal pathological manifestations.</p>
+                <div class="service-card fade-up" style="transition-delay: 0.1s;">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Immune Restoration</h3>
+                    <p>Rectifying immune system dysfunction to naturally defend against severe allergies and recurrent physiological breakdowns.</p>
                 </div>
-                <div class="service-card reveal delay-2">
-                    <i class="fas fa-child-reaching"></i>
-                    <h4>Pediatric & Skin Care</h4>
-                    <p>Gentle, highly effective treatments for children's developmental issues, as well as complex dermatological conditions like eczema and psoriasis.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="process" class="container">
-        <div class="section-header reveal">
-            <span>The Clinical Approach</span>
-            <h3>How We Heal You</h3>
-        </div>
-        <div class="process-grid">
-            <div class="process-step reveal">
-                <div class="step-number">01</div>
-                <h4>Deep Consultation</h4>
-                <p>A rigorous, unhurried initial session to map your complete medical history, lifestyle, and unique biological symptoms.</p>
-            </div>
-            <div class="process-step reveal delay-1">
-                <div class="step-number">02</div>
-                <h4>Constitutional Profiling</h4>
-                <p>Analyzing your unique case to select the single, perfectly matched homeopathic remedy based on classical principles.</p>
-            </div>
-            <div class="process-step reveal delay-2">
-                <div class="step-number">03</div>
-                <h4>Restoration & Cure</h4>
-                <p>Administering the natural remedy to trigger your body's vital force, eradicating the disease from its root without side effects.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="bg-gray">
-        <div class="container">
-            <div class="section-header reveal">
-                <span>Connect With Us</span>
-                <h3>Visit The Clinic</h3>
-            </div>
-            <div class="contact-wrap reveal delay-1">
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h5>Clinic Address</h5>
-                            <p>Opposite Nagrik Sahkari Bank,<br>Near Jubile Garden, Dhebar Road,<br>Rajkot - 360002, Gujarat</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h5>Consultation Hours</h5>
-                            <p>Monday - Saturday<br>Morning: 10:00 AM - 1:00 PM<br>Evening: 5:00 PM - 8:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h5>Direct Contact</h5>
-                            <p style="font-size: 1.5rem; font-weight: 600; margin-top: 5px;">+91 99090 68168</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="map-box">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.676648834455!2d70.7963283!3d22.2891118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98b688d070b%3A0x64c8f553f17d3d03!2sDhebar%20Rd%2C%20Rajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="service-card fade-up" style="transition-delay: 0.2s;">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Holistic Wellness</h3>
+                    <p>Complete psychological and physical alignment therapies, ensuring the highest standard of living without chemical dependency.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/919909068168" target="_blank" class="float-wa" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal-content">
+            <button class="close-modal hover-target" id="close-modal"><i class="fas fa-times"></i></button>
+            <h2>Schedule a Consultation</h2>
+            <p style="margin-top: 15px; opacity: 0.8;">Begin your journey to absolute health.</p>
+            
+            <div class="contact-box">
+                <p style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--accent-gold);">Lakdawala Clinic</p>
+                <p style="margin-top: 10px;">Opposite Nagrik Sahkari Bank,<br>Near Jubile Garden, Dhebar Road, Rajkot</p>
+                <p style="margin-top: 20px; font-weight: 600;">+91 99090 68168</p>
+                
+                <a href="https://wa.me/919909068168" target="_blank" class="whatsapp-btn-large hover-target">
+                    <i class="fab fa-whatsapp"></i> Message the Clinic Directly
+                </a>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <h2>Lakdawala Clinic</h2>
-        <p>Advanced Homeopathic Care by Dr. Mustufa K Lakdawala</p>
-        <p style="margin-top: 30px; font-size: 0.8rem;">&copy; 2026 All Rights Reserved.</p>
+        <p>&copy; 2026 Dr. Mustufa K Lakdawala. All rights reserved.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
             
-            const revealOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+            // 1. PRELOADER
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 2000);
 
-            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) { return; }
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                });
-            }, revealOptions);
+            // 2. CUSTOM CURSOR
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            const hoverTargets = document.querySelectorAll('.hover-target');
 
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                // Add slight delay to outline for smooth trailing effect
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
             });
 
-            // Subtle Navbar Shadow on Scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
-                    navbar.style.padding = '10px 5%';
+            hoverTargets.forEach(target => {
+                target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+
+            // 3. DARK/LIGHT THEME TOGGLE
+            const themeBtn = document.getElementById('theme-btn');
+            const htmlEl = document.documentElement;
+            const themeIcon = themeBtn.querySelector('i');
+
+            themeBtn.addEventListener('click', () => {
+                const currentTheme = htmlEl.getAttribute('data-theme');
+                if (currentTheme === 'light') {
+                    htmlEl.setAttribute('data-theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
                 } else {
-                    navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.03)';
-                    navbar.style.padding = '15px 5%';
+                    htmlEl.setAttribute('data-theme', 'light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
                 }
+            });
+
+            // 4. SCROLL ANIMATIONS (Fade Up & Image Reveal)
+            const observerOptions = { threshold: 0.2, rootMargin: "0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up, .img-reveal-wrapper').forEach(el => observer.observe(el));
+
+            // 5. MODAL LOGIC
+            const modal = document.getElementById('booking-modal');
+            const openModalBtn = document.getElementById('open-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            openModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close modal on outside click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
             });
         });
     </script>
