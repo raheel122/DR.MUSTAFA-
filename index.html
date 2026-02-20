@@ -3,461 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Mustufa K Lakdawala | Premium Homeopathic Care</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Lakdawala Clinic - Dr. Mustufa K Lakdawala. Premium Homeopathic Care in Rajkot with over 26 years of experience.">
+    <title>Lakdawala Clinic | Premium Homeopathy in Rajkot</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* --- Premium Design System --- */
+        /* --- CORE DESIGN SYSTEM --- */
         :root {
-            --primary-dark: #0f172a;      /* Deep Slate Navy */
-            --primary-light: #1e293b;     /* Slate Blue */
-            --accent-gold: #c5a880;       /* Champagne Gold */
-            --text-main: #334155;         /* Crisp Dark Gray */
-            --text-muted: #64748b;        /* Soft Gray */
-            --bg-main: #f8fafc;           /* Off-White */
+            --brand-dark: #0f2922;      /* Deep Forest */
+            --brand-primary: #1b4332;   /* Royal Green */
+            --brand-gold: #d4af37;      /* True Gold */
+            --text-main: #2b2b2b;
+            --text-light: #737373;
+            --bg-body: #fdfdfc;
+            --bg-alt: #f4f6f5;
             --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-main);
-            background-color: var(--bg-main);
-            line-height: 1.7;
+            background-color: var(--bg-body);
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .serif {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-dark);
-        }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; color: var(--brand-dark); }
+        
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- SMOOTH REVEAL ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
 
-        /* --- High-End Subtle Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Header & Navigation --- */
+        /* --- NAVIGATION --- */
         header {
-            position: fixed;
-            width: 100%;
-            top: 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            padding: 15px 5%; transition: var(--transition);
         }
-
-        .logo-block {
-            display: flex;
-            flex-direction: column;
+        
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        
+        .logo-box { display: flex; flex-direction: column; }
+        .logo-box h1 { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+        .logo-box span { font-size: 0.7rem; color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 600; margin-top: 4px; }
+        
+        nav ul { display: flex; gap: 3rem; list-style: none; align-items: center; }
+        nav a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+        nav a:hover { color: var(--brand-gold); }
+        
+        .btn-call {
+            background: var(--brand-primary); color: var(--white); padding: 12px 28px;
+            border-radius: 2px; font-weight: 600; letter-spacing: 1px;
         }
+        .btn-call:hover { background: var(--brand-dark); color: var(--white); }
 
-        .logo-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            letter-spacing: 0.5px;
-        }
-
-        .logo-subtitle {
-            font-size: 0.75rem;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover { color: var(--accent-gold); }
-
-        .nav-btn {
-            padding: 10px 24px;
-            background-color: var(--primary-dark);
-            color: var(--white) !important;
-            border-radius: 2px;
-        }
-        .nav-btn:hover { background-color: var(--accent-gold); }
-
-        /* --- Hero Section --- */
+        /* --- HERO PARALLAX --- */
         #hero {
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 0 5%;
-            position: relative;
+            background-image: linear-gradient(rgba(15, 41, 34, 0.85), rgba(15, 41, 34, 0.95)), url('https://images.unsplash.com/photo-1551076805-e1869043e560?auto=format&fit=crop&q=80');
+            background-attachment: fixed; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 5%;
         }
 
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: 0;
+        .hero-content { max-width: 900px; margin-top: 4rem; }
+        .hero-subtitle { color: var(--brand-gold); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 20px; }
+        .hero-content h2 { color: var(--white); font-size: 4.5rem; font-weight: 400; line-height: 1.1; margin-bottom: 30px; }
+        .hero-content p { font-size: 1.2rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+        
+        .btn-gold {
+            background: var(--brand-gold); color: var(--white); padding: 18px 45px;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
+            border-radius: 2px; transition: var(--transition); display: inline-block;
         }
+        .btn-gold:hover { background: #b8962e; transform: translateY(-3px); }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero-content h1 {
-            color: var(--white);
-            font-size: 4.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-primary, .btn-secondary {
-            display: inline-block;
-            padding: 16px 40px;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-gold);
-            color: var(--white);
-            border: 1px solid var(--accent-gold);
-        }
-
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--accent-gold);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-            border: 1px solid var(--white);
-            margin-left: 15px;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--white);
-            color: var(--primary-dark);
-        }
-
-        /* --- Section Defaults --- */
-        section { padding: 100px 5%; }
+        /* --- GLOBAL SECTION STYLES --- */
+        section { padding: 120px 5%; }
         .container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header span { color: var(--brand-gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+        .section-header h3 { font-size: 3rem; margin-top: 10px; }
+
+        /* --- THE DOCTOR (ABOUT) --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-subtitle {
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 1rem;
-        }
-        .section-header h2 { font-size: 2.8rem; }
+        .image-frame { position: relative; padding: 20px; }
+        .image-frame::before { content: ''; position: absolute; top: 0; left: 0; right: 20px; bottom: 20px; border: 2px solid var(--brand-gold); z-index: -1; }
+        .image-frame img { width: 100%; height: auto; display: block; box-shadow: 0 20px 40px rgba(0,0,0,0.1); object-fit: cover; aspect-ratio: 4/5; }
 
-        /* --- About Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 2rem;
-        }
-        .stat-item h4 {
-            font-size: 2.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-        .stat-item p { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin:0;}
+        .about-text h4 { font-size: 2.5rem; margin-bottom: 20px; }
+        .about-text p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 20px; text-align: justify; }
+        
+        .stats-banner { display: flex; gap: 40px; margin-top: 40px; padding-top: 30px; border-top: 1px solid #e0e0e0; }
+        .stat h5 { font-size: 3rem; color: var(--brand-primary); line-height: 1; }
+        .stat p { font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-top: 5px; color: var(--text-main); }
 
-        /* --- Specialties Section --- */
-        .bg-light { background-color: var(--white); }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
+        /* --- SPECIALTIES GRID --- */
+        .bg-gray { background-color: var(--bg-alt); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
         .service-card {
-            background: var(--bg-main);
-            padding: 3rem 2rem;
-            border: 1px solid #e2e8f0;
-            transition: all 0.4s ease;
+            background: var(--white); padding: 50px 40px; border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: var(--transition);
+            border-top: 4px solid transparent;
         }
-        .service-card:hover {
-            background: var(--primary-dark);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 1.5rem;
-        }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; transition: color 0.4s ease; }
-        .service-card p { color: var(--text-muted); transition: color 0.4s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-top: 4px solid var(--brand-gold); }
+        .service-card i { font-size: 3rem; color: var(--brand-primary); margin-bottom: 25px; }
+        .service-card h4 { font-size: 1.5rem; margin-bottom: 15px; }
+        .service-card p { font-size: 0.95rem; color: var(--text-light); }
+
+        /* --- THE PROCESS TIMELINE --- */
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
+        .process-step { position: relative; }
+        .step-number { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(212, 175, 55, 0.2); line-height: 1; margin-bottom: -30px; font-weight: 700; }
+        .process-step h4 { font-size: 1.5rem; margin-bottom: 15px; position: relative; z-index: 1; }
+        .process-step p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* --- CONTACT & LOCATION --- */
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; background: var(--white); box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .contact-details { padding: 60px; background: var(--brand-dark); color: var(--white); }
         
-        .service-card:hover h3, .service-card:hover p { color: var(--white); }
+        .contact-item { margin-bottom: 35px; display: flex; gap: 20px; }
+        .contact-item i { font-size: 1.5rem; color: var(--brand-gold); margin-top: 5px; }
+        .contact-item h5 { color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .contact-item p { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+        
+        .map-box { width: 100%; height: 100%; min-height: 400px; background: #eee; }
 
-        /* --- Approach Section --- */
-        .approach-box {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 5rem;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
+        /* --- FLOATING WHATSAPP --- */
+        .float-wa {
+            position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 35px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 9999;
+            transition: var(--transition);
         }
-        .approach-box h2 { color: var(--white); margin-bottom: 2rem; font-size: 2.5rem; }
-        .approach-box p { font-size: 1.1rem; color: #cbd5e1; max-width: 700px; margin: 0 auto; }
+        .float-wa:hover { transform: scale(1.1) rotate(10deg); }
 
-        /* --- Contact & Location Section --- */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-        }
-        .contact-info-block { margin-bottom: 2.5rem; }
-        .contact-info-block h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .contact-info-block p {
-            font-size: 1.2rem;
-            color: var(--primary-dark);
-            font-weight: 500;
-        }
-        .map-container {
-            width: 100%;
-            height: 400px;
-            background-color: #e2e8f0;
-            border: 1px solid #cbd5e1;
-        }
+        /* --- FOOTER --- */
+        footer { background: #081612; color: rgba(255,255,255,0.6); padding: 50px 5%; text-align: center; font-size: 0.9rem; }
+        footer h2 { color: var(--white); font-size: 1.5rem; margin-bottom: 10px; }
 
-        /* --- Footer --- */
-        footer {
-            background-color: #020617;
-            color: var(--text-muted);
-            padding: 3rem 5%;
-            text-align: center;
-            font-size: 0.9rem;
+        @media (max-width: 900px) {
+            .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; gap: 60px; }
+            nav ul { display: none; } /* Add hamburger menu logic for mobile later if needed */
+            .hero-content h2 { font-size: 3rem; }
         }
-        footer p { margin-top: 1rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-block">
-            <span class="logo-title">LAKDAWALA CLINIC</span>
-            <span class="logo-subtitle">Dr. Mustufa K Lakdawala</span>
+    <header id="navbar">
+        <div class="nav-container">
+            <div class="logo-box">
+                <h1>Lakdawala Clinic</h1>
+                <span>Dr. Mustufa K Lakdawala</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">Profile</a></li>
+                    <li><a href="#specialties">Treatments</a></li>
+                    <li><a href="#process">Methodology</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="tel:+919909068168" class="btn-call"><i class="fas fa-phone"></i> 99090 68168</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">Profile</a></li>
-                <li><a href="#specialties">Treatments</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="tel:+919909068168" class="nav-btn">Call: 99090 68168</a></li>
-            </ul>
-        </nav>
     </header>
 
     <section id="hero">
         <div class="hero-content reveal">
-            <h1>Excellence in Homeopathic Healthcare</h1>
-            <p>Providing definitive, root-cause healing and comprehensive chronic disease management in Rajkot for over two decades.</p>
-            <div style="margin-top: 2rem;">
-                <a href="#contact" class="btn-primary">Schedule Consultation</a>
-                <a href="#about" class="btn-secondary">Clinical Profile</a>
-            </div>
+            <span class="hero-subtitle">Rajkot's Premier Homeopathic Center</span>
+            <h2>Definitive healing starts from within.</h2>
+            <p>Experience world-class, side-effect-free homeopathic care. We don't just treat the symptoms; we eradicate the root cause of acute and chronic diseases.</p>
+            <a href="#contact" class="btn-gold">Schedule Your Visit</a>
         </div>
     </section>
 
-    <section id="about" class="container reveal">
+    <section id="about" class="container">
         <div class="about-grid">
-            <div>
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80" alt="Clinic Atmosphere" style="width: 100%; height: auto; object-fit: cover; filter: grayscale(20%); border: 1px solid #e2e8f0;">
+            <div class="image-frame reveal">
+                <img src="dad-photo.jpg" alt="Dr. Mustufa K Lakdawala">
             </div>
-            <div class="about-text">
-                <span class="section-subtitle">Clinical Excellence</span>
-                <h3>Dr. Mustufa K Lakdawala</h3>
-                <p>Dedicated to the rigorous practice of classical homeopathy, Dr. Lakdawala has built a legacy of trust and profound medical efficacy in Rajkot. His diagnostic methodology focuses not merely on symptom suppression, but on eradicating the fundamental pathology of chronic ailments.</p>
-                <p>With an unwavering commitment to patient-centric care, the clinic offers highly individualized medicinal protocols designed to restore the body's holistic equilibrium securely and permanently.</p>
+            <div class="about-text reveal delay-1">
+                <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                    <span>Clinical Director</span>
+                    <h4>Dr. Mustufa K Lakdawala</h4>
+                </div>
+                <p>With an illustrious career spanning over two and a half decades, Dr. Lakdawala is recognized as a leading authority in classical homeopathy in Rajkot. His diagnostic precision and profound understanding of human pathology allow him to tackle complex chronic cases that have resisted conventional treatments.</p>
+                <p>His philosophy is entirely patient-centric. By meticulously analyzing your unique genetic, physical, and psychological constitution, he formulates highly individualized medicinal protocols that restore your body's innate healing mechanisms naturally and permanently.</p>
                 
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h4>26+</h4>
-                        <p>Years of Practice</p>
+                <div class="stats-banner">
+                    <div class="stat">
+                        <h5>26+</h5>
+                        <p>Years Experience</p>
                     </div>
-                    <div class="stat-item">
-                        <h4>10k+</h4>
-                        <p>Consultations</p>
+                    <div class="stat">
+                        <h5>Chronic</h5>
+                        <p>Disease Specialist</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="specialties" class="bg-light reveal">
+    <section id="specialties" class="bg-gray">
         <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Medical Competencies</span>
-                <h2>Areas of Specialization</h2>
+            <div class="section-header reveal">
+                <span>Areas of Excellence</span>
+                <h3>Specialized Treatments</h3>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-notes-medical"></i>
-                    <h3>Chronic Disease Management</h3>
-                    <p>Advanced homeopathic interventions for long-standing conditions, offering sustainable relief without the adverse effects of conventional prolonged medication.</p>
+                <div class="service-card reveal">
+                    <i class="fas fa-dna"></i>
+                    <h4>Chronic Disease Reversal</h4>
+                    <p>Advanced constitutional remedies for long-standing conditions such as arthritis, asthma, diabetes, and thyroid imbalances, aiming for permanent remission.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-shield-virus"></i>
-                    <h3>Immunological Disorders</h3>
-                    <p>Targeted therapies aimed at rectifying immune system dysfunction, enhancing the body's natural defense mechanisms against recurrent infections.</p>
+                <div class="service-card reveal delay-1">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4>Immunology & Allergies</h4>
+                    <p>Strengthening the immune system to naturally defend against recurrent respiratory infections, severe allergies, and seasonal pathological manifestations.</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-stethoscope"></i>
-                    <h3>Acute Ailments & General Medicine</h3>
-                    <p>Rapid and effective remedies for acute conditions such as severe diarrhoea, acute respiratory issues, and seasonal pathological manifestations.</p>
+                <div class="service-card reveal delay-2">
+                    <i class="fas fa-child-reaching"></i>
+                    <h4>Pediatric & Skin Care</h4>
+                    <p>Gentle, highly effective treatments for children's developmental issues, as well as complex dermatological conditions like eczema and psoriasis.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="approach" class="reveal">
-        <div class="approach-box">
-            <span class="section-subtitle" style="color: var(--accent-gold);">The Philosophy</span>
-            <h2>Treating the Patient, Not Just the Disease</h2>
-            <p>True healing demands a comprehensive understanding of the patient's physical, psychological, and physiological state. Our clinical protocols are strictly individualized, ensuring that every prescribed regimen aligns perfectly with the patient's unique biological constitution.</p>
+    <section id="process" class="container">
+        <div class="section-header reveal">
+            <span>The Clinical Approach</span>
+            <h3>How We Heal You</h3>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="step-number">01</div>
+                <h4>Deep Consultation</h4>
+                <p>A rigorous, unhurried initial session to map your complete medical history, lifestyle, and unique biological symptoms.</p>
+            </div>
+            <div class="process-step reveal delay-1">
+                <div class="step-number">02</div>
+                <h4>Constitutional Profiling</h4>
+                <p>Analyzing your unique case to select the single, perfectly matched homeopathic remedy based on classical principles.</p>
+            </div>
+            <div class="process-step reveal delay-2">
+                <div class="step-number">03</div>
+                <h4>Restoration & Cure</h4>
+                <p>Administering the natural remedy to trigger your body's vital force, eradicating the disease from its root without side effects.</p>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="container reveal">
-        <div class="section-header">
-            <span class="section-subtitle">Visit the Clinic</span>
-            <h2>Consultation & Details</h2>
-        </div>
-        <div class="contact-wrapper">
-            <div>
-                <div class="contact-info-block">
-                    <h4>Clinic Address</h4>
-                    <p>Opposite Nagrik Sahkari Bank,<br>Near Jubile Garden, Dhebar Road,<br>Rajkot - 360002, Gujarat</p>
-                </div>
-                <div class="contact-info-block">
-                    <h4>Direct Contact</h4>
-                    <p>+91 99090 68168</p>
-                </div>
-                <div class="contact-info-block">
-                    <h4>Consultation Hours</h4>
-                    <p>Monday - Saturday</p>
-                    <p style="font-size: 1rem; color: var(--text-muted); margin-top: 5px;">Morning: 10:00 AM - 1:00 PM<br>Evening: 5:00 PM - 8:00 PM</p>
-                </div>
-                <div style="margin-top: 2rem;">
-                    <a href="https://wa.me/919909068168" target="_blank" class="btn-primary" style="padding: 12px 30px; font-size: 0.85rem;"><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Clinic</a>
-                </div>
+    <section id="contact" class="bg-gray">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>Connect With Us</span>
+                <h3>Visit The Clinic</h3>
             </div>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.879789392233!2d70.7963383!3d22.2825488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98b67b427b7%3A0x6b44749f7b6b1580!2sDhebar%20Rd%2C%20Rajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="contact-wrap reveal delay-1">
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h5>Clinic Address</h5>
+                            <p>Opposite Nagrik Sahkari Bank,<br>Near Jubile Garden, Dhebar Road,<br>Rajkot - 360002, Gujarat</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h5>Consultation Hours</h5>
+                            <p>Monday - Saturday<br>Morning: 10:00 AM - 1:00 PM<br>Evening: 5:00 PM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h5>Direct Contact</h5>
+                            <p style="font-size: 1.5rem; font-weight: 600; margin-top: 5px;">+91 99090 68168</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.676648834455!2d70.7963283!3d22.2891118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98b688d070b%3A0x64c8f553f17d3d03!2sDhebar%20Rd%2C%20Rajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
+
+    <a href="https://wa.me/919909068168" target="_blank" class="float-wa" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <footer>
-        <div class="logo-title" style="color: var(--white); font-size: 1.2rem;">LAKDAWALA CLINIC</div>
-        <p>&copy; 2026 Dr. Mustufa K Lakdawala. All clinical rights reserved.</p>
+        <h2>Lakdawala Clinic</h2>
+        <p>Advanced Homeopathic Care by Dr. Mustufa K Lakdawala</p>
+        <p style="margin-top: 30px; font-size: 0.8rem;">&copy; 2026 All Rights Reserved.</p>
     </footer>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) { return; }
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // Subtle Navbar Shadow on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                    navbar.style.padding = '10px 5%';
+                } else {
+                    navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.03)';
+                    navbar.style.padding = '15px 5%';
                 }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        // Trigger once on load
-        reveal();
+            });
+        });
     </script>
 </body>
 </html>
