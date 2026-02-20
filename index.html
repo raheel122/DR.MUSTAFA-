@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mustufa K Lakdawala | Premium Homeopathy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a4275;
+            --secondary: #14a098;
+            --dark: #1f2833;
+            --light: #f4f6f9;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        
+        body { background-color: var(--light); color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- Animations --- */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .show { opacity: 1; transform: translateY(0); }
+
+        /* --- Navigation (Glassmorphism) --- */
+        nav {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; transition: 0.3s;
+        }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary); letter-spacing: 1px; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { text-decoration: none; color: var(--dark); font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: var(--secondary); }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(-45deg, #0a4275, #14a098, #0f2027, #203a43);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: var(--white); padding: 0 5%; position: relative;
+        }
+        #hero h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        #hero p { font-size: 1.5rem; margin-bottom: 2rem; max-width: 800px; opacity: 0.9; }
+        .btn {
+            padding: 15px 35px; background: var(--secondary); color: var(--white);
+            border-radius: 30px; text-decoration: none; font-size: 1.2rem; font-weight: bold;
+            box-shadow: 0 10px 20px rgba(20, 160, 152, 0.4); transition: 0.3s;
+            animation: float 4s ease-in-out infinite;
+        }
+        .btn:hover { background: #0f857d; transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 25px rgba(20, 160, 152, 0.6); }
+
+        /* --- Sections --- */
+        section { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
+        h2 { text-align: center; font-size: 3rem; color: var(--primary); margin-bottom: 50px; }
+        
+        /* --- Services Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--white); padding: 40px 30px; border-radius: 20px;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease; border-bottom: 5px solid transparent;
+        }
+        .card:hover {
+            transform: translateY(-15px); border-bottom: 5px solid var(--secondary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
+        
+        /* --- Contact & Map --- */
+        .contact-wrapper { display: flex; gap: 40px; flex-wrap: wrap; }
+        .map-container { flex: 1; min-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .info-container { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+        .info-box { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; }
+        .info-box i { font-size: 2rem; color: var(--primary); }
+
+        /* --- Floating WhatsApp --- */
+        .whatsapp-float {
+            position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white;
+            border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center;
+            font-size: 35px; box-shadow: 2px 2px 15px rgba(0,0,0,0.2); z-index: 1000; transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        footer { background: var(--dark); color: var(--white); text-align: center; padding: 30px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Lakdawala Clinic</div>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <h1 class="hidden">Dr. Mustufa K Lakdawala</h1>
+        <p class="hidden">26 Years of Excellence in Homeopathic Healthcare & Chronic Disease Management.</p>
+        <a href="#contact" class="btn hidden">Book Your Consultation</a>
+    </section>
+
+    <section id="services">
+        <h2 class="hidden">World-Class Treatments</h2>
+        <div class="grid">
+            <div class="card hidden">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Chronic Diseases</h3>
+                <p>Root-cause healing for long-term health issues using specialized homeopathic profiling.</p>
+            </div>
+            <div class="card hidden">
+                <i class="fas fa-leaf"></i>
+                <h3>Holistic Wellness</h3>
+                <p>Natural, side-effect-free remedies designed to boost your body's innate immune system.</p>
+            </div>
+            <div class="card hidden">
+                <i class="fas fa-user-md"></i>
+                <h3>Expert Consultation</h3>
+                <p>Over two decades of clinical experience ensuring accurate diagnosis and personal care.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="hidden">Visit Our Clinic</h2>
+        <div class="contact-wrapper">
+            <div class="map-container hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118106.70010221669!2d70.73889445!3d22.2736308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98ac71cbd83%3A0x1088ebcb1723b125!2sDhebar%20Rd%2C%20Rajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1708420000000!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="info-container hidden">
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Clinic Location</h4>
+                        <p>Opposite Nagrik Sahkari Bank, Near Jubile Garden, Dhebar Road, Rajkot</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Timings</h4>
+                        <p>Monday - Saturday<br>10:00 AM - 1:00 PM | 5:00 PM - 8:00 PM</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4>Call Us</h4>
+                        <p>+91 XXXXX XXXXX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>&copy; 2026 Lakdawala Clinic. Built with passion.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
