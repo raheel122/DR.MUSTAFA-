@@ -1,379 +1,443 @@
-
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lakdawala Clinic | Exclusive Homeopathic Care</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr. Mustafa Lakdawala | Trillion-Dollar Homeopathy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* --- DYNAMIC THEME SYSTEM --- */
         :root {
-            --bg-color: #f8f9fa;
-            --text-color: #121212;
-            --accent-gold: #B59551;
-            --accent-gold-hover: #9c7f42;
-            --nav-bg: rgba(248, 249, 250, 0.85);
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.1);
-            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-fast: all 0.3s ease;
+            --bg-cream: #FDFBF7;
+            --bg-pure: #FFFFFF;
+            --emerald: #059669;
+            --emerald-dark: #047857;
+            --emerald-glow: rgba(5, 150, 105, 0.4);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --gold: #d97706;
+            --gold-glow: rgba(217, 119, 6, 0.4);
+            --nav-height: 100px;
         }
 
-        [data-theme="dark"] {
-            --bg-color: #0a0a0a;
-            --text-color: #f8f9fa;
-            --accent-gold: #D4AF37;
-            --accent-gold-hover: #f1c40f;
-            --nav-bg: rgba(10, 10, 10, 0.85);
-            --card-bg: #141414;
-            --border-color: rgba(255,255,255,0.1);
-        }
+        /* --- GLOBAL RESET & DEVICE LOCK --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        @media (pointer: fine) { * { cursor: none !important; } }
+        body { background-color: var(--bg-cream); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
 
-        /* --- GLOBAL RESETS --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+        /* --- LUXURY CURSOR (Max Z-Index) --- */
+        .cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); display: none; }
+        .cursor-ring { width: 45px; height: 45px; border: 1.5px solid var(--emerald); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); display: none; }
+        @media (pointer: fine) { .cursor-dot, .cursor-ring { display: block; } }
+
+        /* --- THE LIQUID ARC WIPE (THE BEST TRANSITION) --- */
+        .arc-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999000; pointer-events: none; overflow: hidden; }
+        .arc-wipe { position: absolute; top: 0; left: 0; width: 105vw; height: 100vh; transform: translateX(-100%); border-radius: 0 100% 100% 0 / 0 50% 50% 0; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), border-radius 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
         
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
+        .arc-gold { background: var(--gold); z-index: 1; }
+        .arc-emerald { background: var(--emerald-dark); z-index: 2; transition-delay: 0.1s; }
 
-        h1, h2, h3, h4, h5, .serif { font-family: 'Cinzel', serif; font-weight: 500; }
-        a { text-decoration: none; color: inherit; }
-
-        /* --- CUSTOM CURSOR --- */
-        .cursor-dot {
-            width: 8px; height: 8px; background-color: var(--accent-gold);
-            border-radius: 50%; position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid var(--accent-gold);
-            border-radius: 50%; position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 9998;
-            transition: transform 0.15s ease-out;
-        }
-        .cursor-hover .cursor-dot { width: 50px; height: 50px; background-color: rgba(212, 175, 55, 0.2); mix-blend-mode: difference; }
-        .cursor-hover .cursor-outline { opacity: 0; }
-
-        /* --- PRELOADER --- */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #0a0a0a; z-index: 10000; display: flex;
-            justify-content: center; align-items: center; color: var(--accent-gold);
-            transition: opacity 1s ease, visibility 1s ease;
-        }
-        .loader-text { font-family: 'Cinzel', serif; font-size: 2rem; letter-spacing: 5px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-
-        /* --- NAVIGATION --- */
-        header {
-            position: fixed; width: 100%; top: 0; padding: 20px 5%;
-            background: var(--nav-bg); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-        }
-        .brand { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 40px; align-items: center; }
-        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative; }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 1px;
-            bottom: -5px; left: 0; background-color: var(--accent-gold);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
+        /* IN-ANIMATION: Sweep across screen */
+        .arc-container.in .arc-wipe { transform: translateX(0); border-radius: 0; pointer-events: all; }
         
-        /* Theme Toggle Button */
-        .theme-toggle { background: none; border: none; color: var(--text-color); font-size: 1.2rem; outline: none; transition: var(--transition-fast); }
-        .theme-toggle:hover { color: var(--accent-gold); transform: rotate(15deg); }
+        /* OUT-ANIMATION: Sweep out to the right */
+        .arc-container.out .arc-wipe { transform: translateX(100%); border-radius: 100% 0 0 100% / 50% 0 0 50%; pointer-events: none; }
+        .arc-container.out .arc-gold { transition-delay: 0.1s; }
+        .arc-container.out .arc-emerald { transition-delay: 0s; }
 
-        /* --- HERO SECTION --- */
-        #hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; padding: 0 5%;
-            background: radial-gradient(circle at center, var(--card-bg) 0%, var(--bg-color) 100%);
-        }
-        .hero-content { z-index: 2; max-width: 1000px; margin-top: 5rem; }
-        .hero-tag { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-gold); margin-bottom: 20px; display: block; }
-        .hero-title { font-size: 5vw; line-height: 1.1; margin-bottom: 30px; }
-        .hero-desc { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0.8; }
+        /* --- LIVING BACKGROUND MESH --- */
+        .mesh-system { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; background: var(--bg-cream); }
+        .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5; animation: floatOrb 20s infinite alternate ease-in-out; }
+        .orb-1 { width: 50vw; height: 50vw; background: rgba(5, 150, 105, 0.08); top: -10%; left: -10%; }
+        .orb-2 { width: 40vw; height: 40vw; background: rgba(217, 119, 6, 0.05); bottom: -10%; right: -10%; animation-delay: -5s; }
+        @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(8vw, 8vh) scale(1.1); } }
+
+        /* --- NAVIGATION & SVG LOTUS LOGO --- */
+        nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.03); z-index: 100000; }
+        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; }
         
-        .btn-luxury {
-            display: inline-block; padding: 18px 45px; background: transparent;
-            color: var(--text-color); border: 1px solid var(--border-color);
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
-            position: relative; overflow: hidden; transition: var(--transition-fast);
-        }
-        .btn-luxury::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--accent-gold); z-index: -1; transform: scaleX(0);
-            transform-origin: right; transition: transform 0.5s ease;
-        }
-        .btn-luxury:hover { color: #fff; border-color: var(--accent-gold); }
-        .btn-luxury:hover::before { transform: scaleX(1); transform-origin: left; }
-
-        /* --- ABOUT EDITORIAL --- */
-        .section-padding { padding: 150px 5%; }
-        .editorial-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; max-width: 1400px; margin: 0 auto; align-items: center; }
+        /* SVG Lotus Logo */
+        .lotus-icon { width: 45px; height: 45px; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; }
+        .brand:hover .lotus-icon { transform: scale(1.15) translateY(-3px); filter: drop-shadow(0 10px 15px var(--emerald-glow)); }
         
-        .img-reveal-wrapper { position: relative; overflow: hidden; border-radius: 2px; }
-        .img-reveal-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color); z-index: 1; transition: height 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        .img-reveal-wrapper.active .img-reveal-overlay { height: 0; }
-        .editorial-img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: transform 2s ease; }
-        .img-reveal-wrapper:hover .editorial-img { transform: scale(1.05); filter: grayscale(0%); }
+        .brand-name { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        .brand-name span { color: var(--emerald); }
 
-        .editorial-text h2 { font-size: 3.5rem; margin-bottom: 30px; line-height: 1.2; }
-        .editorial-text p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.8; font-weight: 300; }
-        .signature { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--accent-gold); margin-top: 40px; }
+        .nav-links { display: none; gap: 35px; }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; position: relative; padding-bottom: 5px; transition: 0.3s; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--emerald); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        /* --- SERVICES (GLASSMORPHISM CARDS) --- */
-        .services-container { max-width: 1400px; margin: 0 auto; }
-        .section-heading { text-align: center; margin-bottom: 80px; }
-        .section-heading h2 { font-size: 3rem; }
+        /* --- CINEMATIC PAGE ENGINE --- */
+        .page-container { position: relative; width: 100vw; min-height: 100vh; overflow-x: hidden; }
+        .page { position: absolute; top: 0; left: 0; width: 100%; min-height: 100vh; padding-top: var(--nav-height); display: none; transform-origin: center center; }
         
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .service-card {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            padding: 50px 40px; transition: var(--transition-slow);
-            position: relative; overflow: hidden;
-        }
-        .service-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0;
-            background: var(--accent-gold); transition: height 0.5s ease;
-        }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
-        .service-card:hover::before { height: 100%; }
-        .service-card i { font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 30px; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        /* The Active Page Animation */
+        .page.active { display: block; animation: pageEnter 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; z-index: 2; }
+        @keyframes pageEnter { from { opacity: 0; transform: scale(1.08) translateY(30px); filter: blur(10px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
 
-        /* --- BOOKING MODAL (POPUP) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-            z-index: 2000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: var(--transition-fast);
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background: var(--bg-color); padding: 60px; max-width: 600px; width: 90%;
-            position: relative; transform: translateY(50px); transition: var(--transition-slow);
-            border: 1px solid var(--accent-gold); text-align: center;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        .close-modal {
-            position: absolute; top: 20px; right: 25px; font-size: 1.5rem;
-            color: var(--text-color); background: none; border: none; padding: 10px;
-        }
-        .contact-box { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
-        .whatsapp-btn-large {
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-            background: #25d366; color: white; padding: 20px; font-size: 1.2rem;
-            font-weight: 600; margin-top: 20px; transition: var(--transition-fast);
-        }
-        .whatsapp-btn-large:hover { background: #1ebc59; letter-spacing: 2px; }
+        /* The Leaving Page Animation */
+        .page.leaving { display: block; animation: pageLeave 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards; z-index: 1; }
+        @keyframes pageLeave { from { opacity: 1; transform: scale(1); filter: blur(0); } to { opacity: 0; transform: scale(0.9) translateY(-30px); filter: blur(10px); } }
 
         /* --- SCROLL ANIMATIONS --- */
-        .fade-up { opacity: 0; transform: translateY(50px); transition: var(--transition-slow); }
-        .fade-up.active { opacity: 1; transform: translateY(0); }
+        .anim-hide { opacity: 0; transform: translateY(40px) scale(0.95); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .anim-show { opacity: 1; transform: translateY(0) scale(1); }
+        .d-1 { transition-delay: 0.1s; } .d-2 { transition-delay: 0.2s; } .d-3 { transition-delay: 0.3s; }
 
-        /* Footer */
-        footer { padding: 60px 5%; text-align: center; border-top: 1px solid var(--border-color); font-size: 0.9rem; opacity: 0.7; }
+        /* --- HIGH DENSITY HOME PAGE --- */
+        .home-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - var(--nav-height)); align-items: center; padding: 0 5%; gap: 60px; }
+        .home-text-area { padding-right: 5%; display: flex; flex-direction: column; justify-content: center; }
+        .home-img-area { position: relative; height: 75vh; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+        
+        .hero-img-box { position: relative; width: 100%; height: 100%; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.15); transform-style: preserve-3d; animation: floatImg 8s ease-in-out infinite alternate; }
+        .hero-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-img-box::after { content: ''; position: absolute; inset: 0; border: 2px solid rgba(255,255,255,0.6); border-radius: 40px; }
+        @keyframes floatImg { 0% { transform: translateY(0) rotateY(0); } 100% { transform: translateY(-20px) rotateY(-3deg); box-shadow: 0 60px 120px rgba(5,150,105,0.2); } }
 
-        @media (max-width: 1024px) {
-            .editorial-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 3rem; }
-            .nav-links { display: none; } /* Mobile menu logic goes here */
+        .glass-badge { position: absolute; bottom: 40px; left: -40px; background: rgba(255,255,255,0.85); backdrop-filter: blur(25px); padding: 35px 45px; border-radius: 25px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,1); z-index: 10; animation: floatBadge 6s ease-in-out infinite alternate-reverse; }
+        @keyframes floatBadge { 0% { transform: translateY(0) translateZ(50px); } 100% { transform: translateY(15px) translateZ(50px); } }
+
+        .h-title { font-size: clamp(3.2rem, 6.5vw, 6.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -3px; margin-bottom: 25px; }
+        .h-desc { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+
+        /* --- BUTTONS --- */
+        .btn-glow { position: relative; display: inline-flex; padding: 22px 55px; background: var(--emerald); color: white; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; overflow: hidden; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: none; box-shadow: 0 15px 35px var(--emerald-glow); z-index: 1; }
+        .btn-glow::before { content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%; background: var(--gold); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: -1; border-radius: 100px; }
+        .btn-glow:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 25px 50px rgba(217, 119, 6, 0.4); color: white; }
+        .btn-glow:hover::before { width: 100%; }
+
+        .btn-outline { display: inline-flex; padding: 20px 50px; border: 2px solid var(--text-main); color: var(--text-main); border-radius: 100px; text-decoration: none; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; transition: 0.4s; }
+        .btn-outline:hover { background: var(--text-main); color: white; transform: translateY(-5px); }
+
+        /* --- GLOBAL GRID & 3D CARDS --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 5%; }
+        .title-section { text-align: center; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; letter-spacing: -2px; margin-bottom: 80px; text-transform: capitalize; }
+        
+        .grid { display: grid; gap: 40px; }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
+
+        .card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 60px 50px; border-radius: 35px; border: 1px solid rgba(255,255,255,1); box-shadow: 0 20px 50px rgba(0,0,0,0.03); transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease; transform-style: preserve-3d; position: relative; overflow: hidden; }
+        .card-inner { pointer-events: none; transform: translateZ(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card:hover { border-color: var(--emerald); box-shadow: 0 40px 80px rgba(5,150,105,0.1); z-index: 10; }
+        .card:hover .card-inner { transform: translateZ(50px); }
+        
+        .card h3 { font-size: 1.8rem; color: var(--emerald); margin-bottom: 20px; font-weight: 800; }
+        .card p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; }
+
+        /* --- AI CHATBOT --- */
+        .ai-fab { position: fixed; bottom: 40px; right: 40px; width: 85px; height: 85px; background: var(--emerald); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 38px; color: white; box-shadow: 0 20px 50px rgba(5,150,105,0.5); z-index: 1000000; border: none; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); animation: pulseFab 2s infinite alternate; }
+        .ai-fab:hover { transform: scale(1.15); animation: none; box-shadow: 0 30px 60px rgba(217, 119, 6, 0.4); background: var(--gold); }
+        @keyframes pulseFab { from { box-shadow: 0 10px 30px rgba(5,150,105,0.4); transform: scale(1); } to { box-shadow: 0 15px 50px rgba(5,150,105,0.7); transform: scale(1.05); } }
+
+        .chat-portal { position: fixed; bottom: 145px; right: 40px; width: 400px; height: 550px; background: rgba(255,255,255,0.95); backdrop-filter: blur(30px); border-radius: 30px; box-shadow: 0 50px 100px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 1000001; border: 1px solid white; overflow: hidden; transform-origin: bottom right; animation: chatPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes chatPop { from { opacity: 0; transform: scale(0.5) rotate(10deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+        
+        .chat-header { background: linear-gradient(135deg, var(--emerald), var(--emerald-dark)); color: white; padding: 25px; font-weight: 800; font-size: 1.2rem; display: flex; justify-content: space-between; }
+        .chat-body { flex: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; background: var(--bg-cream); }
+        .msg { max-width: 85%; padding: 18px 22px; border-radius: 20px; font-size: 1rem; font-weight: 500; animation: msgSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes msgSlide { from { opacity: 0; transform: translateY(20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .m-bot { background: white; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
+        .m-user { background: var(--text-main); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .chat-in-box { padding: 20px; background: white; display: flex; gap: 10px; border-top: 1px solid #eee; }
+        .chat-in-box input { flex: 1; padding: 15px 25px; border-radius: 50px; border: 1px solid #ddd; outline: none; font-size: 1rem; background: var(--bg-cream); transition: 0.3s; }
+        .chat-in-box input:focus { border-color: var(--emerald); }
+
+        .wa-fab { position: fixed; bottom: 40px; left: 40px; width: 75px; height: 75px; background: #25D366; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 38px; color: white; text-decoration: none; box-shadow: 0 20px 40px rgba(0,0,0,0.15); z-index: 100000; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .wa-fab:hover { transform: scale(1.15) rotate(-10deg); box-shadow: 0 30px 60px rgba(37, 211, 102, 0.4); }
+
+        @media (max-width: 1100px) { 
+            .home-grid { grid-template-columns: 1fr; text-align: center; padding-top: 50px; } 
+            .home-text-area { padding: 0; align-items: center; } 
+            .hero-img-box { height: 50vh; } 
+            .glass-badge { left: 50%; transform: translateX(-50%); bottom: -30px; width: 90%; } 
+            .chat-portal { width: calc(100vw - 40px); right: 20px; } 
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-
-    <div id="preloader">
-        <div class="loader-text">LAKDAWALA CLINIC</div>
+    <div class="arc-container" id="arcWipe">
+        <div class="arc-wipe arc-gold"></div>
+        <div class="arc-wipe arc-emerald"></div>
     </div>
 
-    <header>
-        <div class="brand">LAKDAWALA</div>
+    <div class="cursor-dot" id="dot"></div>
+    <div class="cursor-ring" id="ring"></div>
+    
+    <div class="mesh-system">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <nav>
+        <a href="#home" class="brand" onclick="navTo('home')">
+            <svg class="lotus-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 15 C60 40 70 65 50 85 C30 65 40 40 50 15Z" fill="#059669"/>
+                <path d="M50 85 C75 80 90 60 85 45 C75 40 60 60 50 85Z" fill="#d97706"/>
+                <path d="M50 85 C25 80 10 60 15 45 C25 40 40 60 50 85Z" fill="#d97706"/>
+            </svg>
+            <div class="brand-name">Lakdawala <span>Clinic</span></div>
+        </a>
         <div class="nav-links">
-            <a href="#hero" class="hover-target">Home</a>
-            <a href="#about" class="hover-target">The Doctor</a>
-            <a href="#services" class="hover-target">Specialties</a>
-            <button class="theme-toggle hover-target" id="theme-btn" aria-label="Toggle Dark Mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <a href="#" class="btn-luxury hover-target" id="open-modal" style="padding: 10px 25px; font-size: 0.75rem;">Book Visit</a>
+            <a href="#home" class="nl active" onclick="navTo('home')">Home</a>
+            <a href="#mapping" class="nl" onclick="navTo('mapping')">The Process</a>
+            <a href="#expertise" class="nl" onclick="navTo('expertise')">Expertise</a>
+            <a href="#reviews" class="nl" onclick="navTo('reviews')">Reviews</a>
+            <a href="#contact" class="nl" onclick="navTo('contact')">Location</a>
         </div>
-    </header>
+    </nav>
 
-    <section id="hero">
-        <div class="hero-content fade-up">
-            <span class="hero-tag">A Legacy of Healing</span>
-            <h1 class="hero-title">Mastering the Art of Classical Homeopathy.</h1>
-            <p class="hero-desc">Over 26 years of restoring absolute health in Rajkot through definitive, root-cause medicinal protocols.</p>
-            <a href="#about" class="btn-luxury hover-target">Discover the Practice</a>
-        </div>
-    </section>
+    <div class="page-container">
 
-    <section id="about" class="section-padding">
-        <div class="editorial-grid">
-            <div class="img-reveal-wrapper">
-                <div class="img-reveal-overlay"></div>
-                <img src="dad-photo.jpg" alt="Dr. Mustufa K Lakdawala" class="editorial-img hover-target">
-            </div>
-            <div class="editorial-text fade-up">
-                <span class="hero-tag">Clinical Director</span>
-                <h2>Dr. Mustufa K Lakdawala</h2>
-                <p>True healing is not the suppression of symptoms; it is the total eradication of the disease from its deepest origin. For over two and a half decades, Dr. Lakdawala has practiced medicine with this singular philosophy.</p>
-                <p>By mapping your complete genetic, physiological, and emotional architecture, he formulates an exact, side-effect-free homeopathic protocol designed specifically for your constitution.</p>
-                <div class="signature">M.K. Lakdawala</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="section-padding" style="background: var(--bg-color);">
-        <div class="services-container">
-            <div class="section-heading fade-up">
-                <span class="hero-tag">Medical Competencies</span>
-                <h2>Areas of Expertise</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <i class="fas fa-infinity"></i>
-                    <h3>Chronic Pathology</h3>
-                    <p>Advanced constitutional interventions for diseases considered incurable or requiring lifelong conventional medication.</p>
+        <div id="home" class="page active">
+            <div class="home-grid">
+                <div class="home-text-area">
+                    <div class="anim-hide" style="color: var(--gold); font-weight: 800; letter-spacing: 4px; margin-bottom: 15px;">EST. 2000</div>
+                    <h1 class="h-title anim-hide d-1">Precision<br>Homeopathic<br>Healing.</h1>
+                    <p class="h-desc anim-hide d-2">We don't mask symptoms. Led by Dr. Mustafa Lakdawala, we map your deep systemic blueprint to permanently eliminate chronic illness at its root.</p>
+                    <div class="anim-hide d-3" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                        <a href="https://wa.me/919909068168" class="btn-glow">Book Recovery</a>
+                        <a href="#mapping" class="btn-outline" onclick="navTo('mapping')">View Process</a>
+                    </div>
                 </div>
-                <div class="service-card fade-up" style="transition-delay: 0.1s;">
-                    <i class="fas fa-shield-virus"></i>
-                    <h3>Immune Restoration</h3>
-                    <p>Rectifying immune system dysfunction to naturally defend against severe allergies and recurrent physiological breakdowns.</p>
-                </div>
-                <div class="service-card fade-up" style="transition-delay: 0.2s;">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Holistic Wellness</h3>
-                    <p>Complete psychological and physical alignment therapies, ensuring the highest standard of living without chemical dependency.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal-overlay" id="booking-modal">
-        <div class="modal-content">
-            <button class="close-modal hover-target" id="close-modal"><i class="fas fa-times"></i></button>
-            <h2>Schedule a Consultation</h2>
-            <p style="margin-top: 15px; opacity: 0.8;">Begin your journey to absolute health.</p>
-            
-            <div class="contact-box">
-                <p style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--accent-gold);">Lakdawala Clinic</p>
-                <p style="margin-top: 10px;">Opposite Nagrik Sahkari Bank,<br>Near Jubile Garden, Dhebar Road, Rajkot</p>
-                <p style="margin-top: 20px; font-weight: 600;">+91 99090 68168</p>
                 
-                <a href="https://wa.me/919909068168" target="_blank" class="whatsapp-btn-large hover-target">
-                    <i class="fab fa-whatsapp"></i> Message the Clinic Directly
-                </a>
+                <div class="home-img-area anim-hide d-3">
+                    <div class="hero-img-box">
+                        <img src="IMG_4021.jpg" alt="Dr. Mustafa Lakdawala" onerror="this.src='https://via.placeholder.com/800x1200?text=IMG_4021.jpg+Missing'">
+                    </div>
+                    <div class="glass-badge">
+                        <div style="font-size: 3rem; font-weight: 900; color: var(--emerald); line-height: 1;">25+ Years</div>
+                        <div style="font-weight: 800; color: var(--text-main); letter-spacing: 2px; margin-top: 5px; font-size: 1.1rem;">MASTERY IN RAJKOT</div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div id="mapping" class="page">
+            <div class="container">
+                <h1 class="title-section anim-hide">The Constitutional Protocol</h1>
+                <div class="grid grid-3">
+                    <div class="card tilt-card anim-hide d-1">
+                        <div class="card-inner">
+                            <div style="font-size: 2.8rem; color: var(--gold); font-weight: 900; margin-bottom: 10px;">01.</div>
+                            <h3>Case Analysis</h3><p>A deep 60-minute consultation covering physical history and psychological triggers.</p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-2">
+                        <div class="card-inner">
+                            <div style="font-size: 2.8rem; color: var(--gold); font-weight: 900; margin-bottom: 10px;">02.</div>
+                            <h3>Biological Mapping</h3><p>We identify your unique 'Constitutional Type' to ensure absolute precision.</p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-3">
+                        <div class="card-inner">
+                            <div style="font-size: 2.8rem; color: var(--gold); font-weight: 900; margin-bottom: 10px;">03.</div>
+                            <h3>Immune Stimulation</h3><p>Triggers your body's self-healing mechanisms without any chemical toxicity.</p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-1">
+                        <div class="card-inner">
+                            <div style="font-size: 2.8rem; color: var(--gold); font-weight: 900; margin-bottom: 10px;">04.</div>
+                            <h3>Systemic Flush</h3><p>Old suppressed toxins and symptoms are naturally cleared from the internal organs.</p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-2">
+                        <div class="card-inner">
+                            <div style="font-size: 2.8rem; color: var(--gold); font-weight: 900; margin-bottom: 10px;">05.</div>
+                            <h3>Permanent Recovery</h3><p>Once the root cause is resolved, the health improvement is deep and long-lasting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="expertise" class="page">
+            <div class="container">
+                <h1 class="title-section anim-hide">Clinical Specialties</h1>
+                <div class="grid grid-3">
+                    <div class="card tilt-card anim-hide d-1"><div class="card-inner"><h3>Immunology</h3><p>Advanced natural protocols for asthma, severe seasonal allergies, and chronic immune decline.</p></div></div>
+                    <div class="card tilt-card anim-hide d-2"><div class="card-inner"><h3>Dermatology</h3><p>Permanent recovery for chronic eczema, psoriasis, and severe acne without suppressive creams.</p></div></div>
+                    <div class="card tilt-card anim-hide d-3"><div class="card-inner"><h3>Gastroenterology</h3><p>Resolving IBS, acidity, and metabolic disorders from the root systemic cause.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reviews" class="page">
+            <div class="container">
+                <h1 class="title-section anim-hide">Patient Journeys</h1>
+                <div class="grid grid-2">
+                    <div class="card tilt-card anim-hide d-1">
+                        <div class="card-inner">
+                            <div style="color:var(--gold); font-size:2rem; margin-bottom:20px;">★★★★★</div>
+                            <p style="font-style:italic; font-size:1.3rem; margin-bottom: 30px;">"Dr. Mustafa's precision is unmatched. Within months of constitutional mapping, my chronic 10-year migraines vanished entirely. I am a new person."</p>
+                            <strong style="font-size: 1.2rem; text-transform: uppercase;">— Rajesh V.</strong>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-2">
+                        <div class="card-inner">
+                            <div style="color:var(--gold); font-size:2rem; margin-bottom:20px;">★★★★★</div>
+                            <p style="font-style:italic; font-size:1.3rem; margin-bottom: 30px;">"The level of care and patience he shows is incredible. He treats the root cause, not just temporary symptoms. Best clinic in Rajkot."</p>
+                            <strong style="font-size: 1.2rem; text-transform: uppercase;">— Amit P.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="page">
+            <div class="container">
+                <h1 class="title-section anim-hide">Visit The Institution</h1>
+                <div class="grid grid-3">
+                    <div class="card tilt-card anim-hide d-1">
+                        <div class="card-inner">
+                            <h3>📍 Precise Location</h3>
+                            <p style="font-weight: 600; font-size: 1.2rem;">Opposite Nagrik Bank,<br>Near Jubile veg market,<br>Dhebar Road, Rajkot - 360002.</p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-2">
+                        <div class="card-inner">
+                            <h3>🕒 Timing</h3>
+                            <p style="font-weight: 600; font-size: 1.2rem;">Mon – Sat: 10AM - 1PM<br>Mon – Sat: 5PM - 8PM<br><span style="color:red">Sunday Closed</span></p>
+                        </div>
+                    </div>
+                    <div class="card tilt-card anim-hide d-3" style="background:var(--text-main); color:white; border:none;">
+                        <div class="card-inner">
+                            <h3 style="color:var(--gold);">📞 Direct Booking</h3>
+                            <p style="font-size:2.8rem; font-weight:900; margin-top: 15px; line-height: 1;">9909068168</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <footer>
-        <p>&copy; 2026 Dr. Mustufa K Lakdawala. All rights reserved.</p>
-    </footer>
+    <div class="chat-portal" id="portal">
+        <div class="chat-header"><span>✨ HomeoAssist AI</span><button onclick="toggleAI()" style="background:0;border:0;color:white;font-size:1.8rem;cursor:pointer;transition:0.3s;" onmouseover="this.style.transform='rotate(90deg)'" onmouseout="this.style.transform='rotate(0deg)'">×</button></div>
+        <div class="chat-body" id="msgs"></div>
+        <div class="chat-in-box"><input type="text" id="ci" class="chat-input" placeholder="Ask about timing, location..." onkeypress="if(event.key==='Enter')askAI()"></div>
+    </div>
+    <button class="ai-fab" onclick="toggleAI()">✨</button>
+    <a href="https://wa.me/919909068168" class="wa-fab" target="_blank">💬</a>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. PRELOADER
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 2000);
+        // --- CURSOR PHYSICS ---
+        const d = document.getElementById('dot'); const r = document.getElementById('ring');
+        let mx=0, my=0, rx=0, ry=0;
+        document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; d.style.left=mx+'px'; d.style.top=my+'px'; });
+        function ani() { rx+=(mx-rx)*0.2; ry+=(my-ry)*0.2; r.style.left=rx+'px'; r.style.top=ry+'px'; requestAnimationFrame(ani); } ani();
 
-            // 2. CUSTOM CURSOR
-            const cursorDot = document.getElementById('cursor-dot');
-            const cursorOutline = document.getElementById('cursor-outline');
-            const hoverTargets = document.querySelectorAll('.hover-target');
-
-            window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                
-                // Add slight delay to outline for smooth trailing effect
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: "forwards" });
+        // --- MAGNETIC 3D CARDS (Desktop Only) ---
+        function initTilt() {
+            if (window.innerWidth <= 1024) return;
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                if(card.dataset.tiltAttached) return;
+                card.dataset.tiltAttached = 'true';
+                card.addEventListener('mousemove', e => {
+                    let rect = card.getBoundingClientRect();
+                    let x = e.clientX - rect.left; let y = e.clientY - rect.top;
+                    let cX = rect.width / 2; let cY = rect.height / 2;
+                    let rX = ((y - cY) / cY) * -12; let rY = ((x - cX) / cX) * 12;
+                    card.style.transform = `perspective(1200px) rotateX(${rX}deg) rotateY(${rY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
             });
+        }
 
-            hoverTargets.forEach(target => {
-                target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-
-            // 3. DARK/LIGHT THEME TOGGLE
-            const themeBtn = document.getElementById('theme-btn');
-            const htmlEl = document.documentElement;
-            const themeIcon = themeBtn.querySelector('i');
-
-            themeBtn.addEventListener('click', () => {
-                const currentTheme = htmlEl.getAttribute('data-theme');
-                if (currentTheme === 'light') {
-                    htmlEl.setAttribute('data-theme', 'dark');
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                } else {
-                    htmlEl.setAttribute('data-theme', 'light');
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
+        // --- INTERSECTION OBSERVER ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('anim-show');
+                    observer.unobserve(entry.target); 
                 }
             });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-            // 4. SCROLL ANIMATIONS (Fade Up & Image Reveal)
-            const observerOptions = { threshold: 0.2, rootMargin: "0px" };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
+        function initObserver() {
+            document.querySelectorAll('.anim-hide').forEach(el => {
+                el.classList.remove('anim-show'); // Reset
+                observer.observe(el);
+            });
+        }
+
+        // --- THE LIQUID ARC ROUTER ---
+        let isAnimating = false;
+        let currentId = 'home';
+        
+        function navTo(id) {
+            if(isAnimating || currentId === id) return; 
+            isAnimating = true;
+            
+            const arc = document.getElementById('arcWipe');
+            const current = document.getElementById(currentId);
+            const next = document.getElementById(id);
+            
+            // 1. Current Page Blurs and Scales down
+            current.classList.add('leaving');
+            current.classList.remove('active');
+            
+            // 2. Arc Sweeps IN
+            arc.classList.remove('out');
+            arc.classList.add('in');
+            
+            setTimeout(() => {
+                // 3. Swap Pages while screen is covered by Emerald Arc
+                current.style.display = 'none';
+                current.classList.remove('leaving');
+                
+                next.style.display = 'block';
+                
+                document.querySelectorAll('.nl').forEach(l => {
+                    l.classList.remove('active');
+                    if(l.getAttribute('href') === '#' + id) l.classList.add('active');
                 });
-            }, observerOptions);
+                
+                window.scrollTo(0,0);
+                initObserver(); 
+                
+                // 4. Arc Sweeps OUT to the right
+                arc.classList.remove('in');
+                arc.classList.add('out');
+                
+                // 5. Next Page scales in from blur
+                next.classList.add('active');
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                    currentId = id;
+                }, 800); // Wait for Arc to clear
+            }, 700); // Mid-point of Arc sweep
+        }
 
-            document.querySelectorAll('.fade-up, .img-reveal-wrapper').forEach(el => observer.observe(el));
+        // --- AI LOGIC ---
+        function toggleAI() { document.getElementById('portal').style.display = document.getElementById('portal').style.display==='flex'?'none':'flex'; if(!msgShown){ask("intro");} }
+        let msgShown = false;
+        function typeText(el, txt, i) { if(i<txt.length){ el.innerHTML += txt.charAt(i); setTimeout(()=>typeText(el,txt,i+1), 15); } }
+        function ask(mode) {
+            const b = document.getElementById('msgs'); const i = document.getElementById('ci');
+            let val = i.value.toLowerCase();
+            if(mode==="intro") { val="hi"; msgShown=true; } else { b.innerHTML += `<div class="msg m-user">${i.value}</div>`; i.value=''; }
+            setTimeout(() => {
+                let res = "I am HomeoAssist. Ask me about Dr. Mustafa's 25+ years experience, our Jubile Market location, or call 9909068168 to book.";
+                if(val.includes("location") || val.includes("where")) res = "Opposite Nagrik Bank, Near Jubile veg market on Dhebar Road, Rajkot - 360002.";
+                if(val.includes("time") || val.includes("hours")) res = "We are open Mon-Sat: 10:00 AM - 1:00 PM and 5:00 PM - 8:00 PM. Closed Sundays.";
+                if(val.includes("mustafa") || val.includes("doctor")) res = "Dr. Mustafa is a Senior Homeopathic Consultant mapping physical & psychological profiles to clear illness at the root.";
+                const div = document.createElement('div'); div.className='msg m-bot'; b.appendChild(div); typeText(div, res, 0);
+                b.scrollTop = b.scrollHeight;
+            }, 500);
+        }
 
-            // 5. MODAL LOGIC
-            const modal = document.getElementById('booking-modal');
-            const openModalBtn = document.getElementById('open-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-
-            openModalBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('active');
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-
-            // Close modal on outside click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.classList.remove('active');
-            });
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initObserver();
+            initTilt();
+            document.getElementById('home').classList.add('anim-show'); 
         });
     </script>
 </body>
